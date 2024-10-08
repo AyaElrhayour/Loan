@@ -55,7 +55,7 @@ public class RequestImpl implements RequestInterface {
 
     @Override
     public Optional<Request> updateRequest(Request request) {
-        Request existingRequest = em.find(Request.class, request.getId())
+        Request existingRequest = em.find(Request.class, request.getId());
         EntityTransaction transaction = em.getTransaction();
         if (existingRequest != null) {
             existingRequest.setProject(request.getProject());

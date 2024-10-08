@@ -1,6 +1,7 @@
 package com.youcode.loan.service;
 
-import com.youcode.loan.repository.Interface.RequestInterface;
+import com.youcode.loan.repository.Implementation.RequestImpl;
+import com.youcode.loan.model.Request;
 import jakarta.inject.Inject;
 
 import java.util.List;
@@ -10,25 +11,33 @@ import java.util.UUID;
 public class RequestService{
 
     @Inject
-    private RequestInterface request;
+    private RequestImpl requestImpl;
 
-    public RequestInterface createRequest() {
-        Optional<RequestInterface> optionalRequest = request.addRequest(request);
-        return optionalRequest.orElse(null);
+    public void addRequest(Request request) throws Exception{
+        if (request == null){
+            throw new Exception("Request can't be null");
+        }else {
+            requestImpl.addRequest(request).get();
+        }
     }
 
-    public RequestInterface getRequestById (UUID uuid) {
-
-
-    public List<RequestInterface> getRequests() {
-        return request.getAllRequests();
+    public Request getRequestById(String id) throws Exception{
+        if (id.toString().isEmpty()){
+            throw new Exception("Request id can't be empty");
+        }else {
+            return requestImpl.getRequest(UUID.fromString(id)).orElse(null);
+        }
     }
 
-    public boolean deleteRequestById(UUID uuid) {
-
+    public List<Request> getAllRequests() {
+        return requestImpl.getAllRequests();
     }
 
-    public boolean updateRequest(RequestInterface request) {
-        //if(uuid.toString().isEmpty() || request.getRequest(id).isEmpty())
+    public boolean deleteRequest(UUID id) {
+        if (id.toString().isEmpty() || requestImpl.getRequest(id).isEmpty()){
+            return false;
+        }else {
+            return requestImpl.removeRequest(id);
+        }
     }
 }
