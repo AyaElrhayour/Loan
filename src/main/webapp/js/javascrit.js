@@ -271,7 +271,7 @@ function changingColors(maxSectionReached) {
         document.querySelector('.last').style.backgroundColor = 'blue';
     }
     else if(maxSectionReached ==2){
-        document.querySelector('.second').style.backgroundColor = 'blue';
-        document.querySelector('.first').style.backgroundColor ='blue';
+        document.querySelector('.second').style.backgroundColor = 'pink';
+        document.querySelector('.first').style.backgroundColor ='pink';
     }
 }
