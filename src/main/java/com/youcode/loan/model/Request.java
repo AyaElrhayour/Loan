@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -76,6 +77,6 @@ public class Request {
     private Boolean oldLoan;
 
     @OneToMany(mappedBy = "request", cascade = CascadeType.ALL , orphanRemoval = true)
-    private Set<Request> requestStatus = new HashSet<>();
+    private List<Request> requestStatus;
 
 }

@@ -2,22 +2,27 @@ package com.youcode.loan.service;
 
 import com.youcode.loan.repository.Implementation.RequestImpl;
 import com.youcode.loan.model.Request;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@ApplicationScoped
+@AllArgsConstructor
+@NoArgsConstructor
 public class RequestService{
 
-    @Inject
     private RequestImpl requestImpl;
 
     public void addRequest(Request request) throws Exception{
         if (request == null){
             throw new Exception("Request can't be null");
         }else {
-            requestImpl.addRequest(request).get();
+            requestImpl.addRequest(request);
         }
     }
 

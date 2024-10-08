@@ -18,6 +18,9 @@ public class RequestImpl implements RequestInterface {
     public RequestImpl(EntityManager em) {
         this.em = em;
     }
+    public RequestImpl() {
+        em = ManagerFactory.getEntityManagerFactory().createEntityManager();
+    }
 
 
     @Override

@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -23,6 +23,9 @@ public class Status {
     @Column
     private String status;
 
+    @Column
+    private String reason;
+
     @OneToMany(mappedBy = "status", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<RequestStatus> requestStatus = new HashSet<>();
+    private List<RequestStatus> requestStatus;
 }
