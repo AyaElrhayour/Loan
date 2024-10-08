@@ -8,11 +8,11 @@ import java.util.UUID;
 
 public interface RequestInterface {
 
-    public Optional<Request> addRequest(Request request);
-    public Optional<Request> getRequest(UUID id);
-    public Optional<Request> updateRequest(Request request);
-    public boolean removeRequest(UUID id);
-    public List<Request> getAllRequests();
+    Optional<Request> addRequest(Request request);
+    Optional<Request> getRequest(UUID id);
+    Optional<Request> updateRequest(Request request);
+    boolean removeRequest(UUID id);
+    List<Request> getAllRequests();
 
 
 }
