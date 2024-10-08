@@ -40,4 +40,12 @@ public class RequestService{
             return requestImpl.removeRequest(id);
         }
     }
+
+    public Request updateRequest(Request request) throws Exception{
+        if (requestImpl.getRequest(request.getId()).isEmpty()){
+            throw new Exception("Request id can't be empty");
+        }else {
+            return requestImpl.updateRequest(request).get();
+        }
+    }
 }

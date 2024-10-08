@@ -15,10 +15,6 @@ public class RequestImpl implements RequestInterface {
 
     private final EntityManager em;
 
-    public RequestImpl() {
-        em = ManagerFactory.getEntityManagerFactory().createEntityManager();
-    }
-
     public RequestImpl(EntityManager em) {
         this.em = em;
     }
@@ -87,7 +83,7 @@ public class RequestImpl implements RequestInterface {
         EntityTransaction transaction = em.getTransaction();
         try{
             transaction.begin();
-            Request request = em.find(Request.class, UUID.fromString(UUID.randomUUID().toString()));
+            Request request = em.find(Request.class, id);
             if (request != null) {
                 em.remove(request);
                 transaction.commit();

@@ -2,11 +2,16 @@ package com.youcode.loan.model;
 
 import com.youcode.loan.enums.Title;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -26,9 +31,15 @@ public class Request {
     private String occupation;
 
     @Column(nullable = false)
+    @Positive
+    @Min(5000)
+    @Max(400000)
     private Double amount;
 
     @Column(nullable = false)
+    @Positive
+    @Min(6)
+    @Max(120)
     private Integer period;
 
     @Column(nullable = false)
@@ -64,5 +75,7 @@ public class Request {
     @Column(nullable = false)
     private Boolean oldLoan;
 
+    @OneToMany(mappedBy = "request", cascade = CascadeType.ALL , orphanRemoval = true)
+    private Set<Request> requestStatus = new HashSet<>();
 
 }
